@@ -18,9 +18,7 @@ export default async function Page() {
           <div className="mt-4 text-gray-500 text-sm">
             Posted on {new Date(post.createdAt ?? "").toLocaleDateString()}
           </div>
-          <div className="mt-4 text-gray-500 text-sm">
-            Author: {post.author?.name}
-          </div>
+          <div className="mt-4 text-gray-500 text-sm">Author: {post.author?.name}</div>
         </div>
       ))}
     </div>
