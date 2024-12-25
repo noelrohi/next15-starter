@@ -1,4 +1,4 @@
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const user = sqliteTable("user", {
@@ -54,15 +54,18 @@ export const verification = sqliteTable("verification", {
 });
 
 export const post = sqliteTable("post", {
-  id: text("id").primaryKey(),
+  id: integer("id").primaryKey({ autoIncrement: true }),
   title: text("title").notNull(),
   content: text("content").notNull(),
   authorId: text("authorId")
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
-  createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
-  updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull(),
+  createdAt: text("createdAt").default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: text("updatedAt").$defaultFn(() => sql`CURRENT_TIMESTAMP`),
 });
+
+export type SelectPost = typeof post.$inferSelect;
+export type InsertPost = typeof post.$inferInsert;
 
 export const userRelations = relations(user, ({ many }) => ({
   posts: many(post),
