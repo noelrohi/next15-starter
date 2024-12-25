@@ -1,10 +1,21 @@
 ## Setup
 
-1. `pnpm create next-app -e https://github.com/noelrohi/next15-starter.git my-app`
-2. `cd my-app`
-3. `cp .env.example .env`
-4. `pnpm install`
-5. `pnpm run dev`
+```bash
+pnpm create next-app -e https://github.com/noelrohi/next15-starter.git my-app
+cd my-app
+```
+
+```bash
+cp .env.example .env
+```
+
+```bash
+pnpm install
+```
+
+```bash
+pnpm run dev
+```
 
 ## Technologies
 
